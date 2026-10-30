@@ -1,0 +1,7 @@
+# Netlify builds the site from src/ on every push (no npm install needed)
+[build]
+  command = "node dev/build.js && node dev/build-site.js"
+  publish = "site"
+
+[build.environment]
+  NODE_VERSION = "20"

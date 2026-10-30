@@ -1,0 +1,13 @@
+# build output: regenerate with node dev/build.js && node dev/build-site.js
+site/
+actuallyfreetools.html
+
+# local-only
+dev/shots/
+.claude/
+node_modules/
+.netlify/
+*.log
+Thumbs.db
+desktop.ini
+.DS_Store
