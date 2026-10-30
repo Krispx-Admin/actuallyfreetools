@@ -40,13 +40,14 @@ Create `dev/site.config.json`:
   "OWNER": "Your name or company",
   "CONTACT_EMAIL": "you@yourdomain.com",
   "SOURCE_URL": "https://github.com/you/your-repo",
+  "CF_ANALYTICS_TOKEN": "",
   "ADSENSE_CLIENT": "",
   "AD_SLOT_RAIL": "",
   "AD_SLOT_BOTTOM": ""
 }
 ```
 
-Leave the three ad fields empty until AdSense approves the site. Run `node dev/build-site.js` again after any change.
+`CF_ANALYTICS_TOKEN` is the token from Cloudflare Web Analytics (free, no cookies); the privacy page describes it automatically. Leave the three ad fields empty until AdSense approves the site. Run `node dev/build-site.js` again after any change.
 
 ## Deploy (Netlify)
 

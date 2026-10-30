@@ -12,6 +12,7 @@ const CONFIG = Object.assign({
   OWNER: 'the ActuallyFreeTools team',          /* who runs the site — shown on About / Privacy */
   CONTACT_EMAIL: 'hello@example.com',
   SOURCE_URL: '',                       /* public repo — the AGPL asks that visitors can get the source */
+  CF_ANALYTICS_TOKEN: '',               /* Cloudflare Web Analytics token: cookieless visitor counts; empty = none */
   ADSENSE_CLIENT: '',                   /* 'ca-pub-…' once AdSense approves you; empty = no ads at all */
   AD_SLOT_RAIL: '',                     /* ad unit id for the two side rails */
   AD_SLOT_BOTTOM: ''                    /* ad unit id for the bottom slot */
@@ -154,6 +155,7 @@ ${fontLinks}
 <link rel="stylesheet" href="${CSS_FILE}">
 ${ld}
 ${withAds ? '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' + esc(C.ADSENSE_CLIENT) + '" crossorigin="anonymous"></script>' : ''}
+${C.CF_ANALYTICS_TOKEN ? '<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon=\'' + esc(JSON.stringify({ token: C.CF_ANALYTICS_TOKEN })) + '\'></script>' : ''}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -316,7 +318,8 @@ legal('privacy', 'Privacy policy', 'How ' + C.BRAND + ' handles your files (it n
 <h2>Files you open</h2><p>Files you drop into a tool are read and processed by code running in your browser tab. They are not uploaded, stored or seen by ${esc(C.BRAND)}. Closing the tab discards them.</p>
 <h2>Things stored on your device</h2><p>A few preferences are saved in your browser’s local storage only if you choose them — for example a remembered signature, invoice details or your preferred OCR language. They stay on your device and you can clear them in your browser settings at any time.</p>
 <h2>Services the site loads</h2><p>To run the tools, your browser downloads code and fonts from public content-delivery networks (cdnjs.cloudflare.com, cdn.jsdelivr.net, fonts.googleapis.com and fonts.gstatic.com) and, for background removal, an AI model from staticimgly.com. Like any website request, these services see your IP address and browser type. They do not receive your files.</p>
-${ADS ? `<h2>Advertising</h2><p>${esc(C.BRAND)} shows ads from Google AdSense at the side and bottom of pages. Google and its partners use cookies to serve and measure ads, which may be personalised based on your visits to this and other sites. Learn how Google uses information at <a class="in" href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>, and opt out of personalised ads at <a class="in" href="https://adssettings.google.com">adssettings.google.com</a>. Visitors in the EEA, UK and Switzerland are asked for consent before personalised ads are shown.</p>` : '<h2>Advertising and analytics</h2><p>The site currently shows no ads and uses no analytics cookies. This policy will be updated before that changes.</p>'}
+${ADS ? `<h2>Advertising</h2><p>${esc(C.BRAND)} shows ads from Google AdSense at the side and bottom of pages. Google and its partners use cookies to serve and measure ads, which may be personalised based on your visits to this and other sites. Learn how Google uses information at <a class="in" href="https://policies.google.com/technologies/partner-sites">policies.google.com/technologies/partner-sites</a>, and opt out of personalised ads at <a class="in" href="https://adssettings.google.com">adssettings.google.com</a>. Visitors in the EEA, UK and Switzerland are asked for consent before personalised ads are shown.</p>` : '<h2>Advertising</h2><p>The site currently shows no ads. This policy will be updated before that changes.</p>'}
+${C.CF_ANALYTICS_TOKEN ? `<h2>Visitor statistics</h2><p>${esc(C.BRAND)} counts visits with Cloudflare Web Analytics to learn which tools people use. It sets no cookies, stores nothing on your device and does not follow you to other sites. It records the page visited, the referring site, your browser, device type and country, and page load speed. It never sees your files. See <a class="in" href="https://www.cloudflare.com/web-analytics/">cloudflare.com/web-analytics</a>.</p>` : '<h2>Visitor statistics</h2><p>The site uses no analytics.</p>'}
 <h2>Contact</h2><p>Questions about privacy: <a class="in" href="mailto:${esc(C.CONTACT_EMAIL)}">${esc(C.CONTACT_EMAIL)}</a>. This site is operated by ${esc(C.OWNER)}.</p>`);
 legal('terms', 'Terms of use', 'The terms for using ' + C.BRAND + '’s free online file tools: your responsibilities, no warranty, and the legal effect of signatures.', `<h1>Terms of use</h1>
 <p class="lede">${esc(C.BRAND)} is free to use for personal and commercial work. By using it you agree to these terms.</p>
