@@ -16,8 +16,6 @@ Free, unlimited file tools (PDF, images, video, audio, spreadsheets, business do
 | `dev/site-check.js` | Checks the built site: headings, presets, ad layout. |
 | `dev/shots.js` | Screenshots of key screens with real files loaded (into `dev/shots/`). |
 | `dev/make-logo.js` | Draws the 32×32 pixel logo into `src/logo/` (SVG + PNGs). |
-| `netlify.toml` | Build settings for Netlify deploys from GitHub. |
-| `skills-lock.json` | The agent skills used to build this site (`npx skills` reinstalls them into `.claude/skills/`, which is not committed). |
 
 ## How the tools are organised
 
@@ -54,7 +52,12 @@ Leave the three ad fields empty until AdSense approves the site. Run `node dev/b
 
 **Set `SITE_URL` first.** Every page's canonical address comes from it, and pages that point at `example.com` will be ignored by Google.
 
-**From GitHub (recommended):** Netlify → Add new site → Import an existing project → GitHub → pick this repo. `netlify.toml` already holds the build command (`node dev/build.js && node dev/build-site.js`) and the publish folder (`site`), so there is nothing to fill in. From then on, every push to `main` redeploys the site.
+**From GitHub (recommended):** Netlify → Add new site → Import an existing project → GitHub → pick this repo, then set:
+
+- **Build command:** `node dev/build.js && node dev/build-site.js`
+- **Publish directory:** `site`
+
+No `npm install` is needed. From then on, every push to `main` redeploys the site.
 
 **By hand:** run both build commands and drag the `site` folder onto the site's **Deploys** tab (or `netlify deploy --prod --dir=site`).
 
