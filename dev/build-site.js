@@ -345,6 +345,8 @@ fs.writeFileSync(path.join(OUT, 'llms.txt'), '# ' + C.BRAND + '\n\n> ' + C.BRAND
   '\n\n## Common tasks\n\n' + Object.keys(ALIASES).map(s => '- [' + ALIASES[s].h1 + '](' + abs('/' + s + '/') + '): ' + ALIASES[s].desc).join('\n') +
   '\n\n## About\n\n- [About ' + C.BRAND + '](' + abs('/about/') + ')\n- [Privacy policy](' + abs('/privacy/') + ')\n');
 if (C.ADSENSE_CLIENT) fs.writeFileSync(path.join(OUT, 'ads.txt'), 'google.com, ' + C.ADSENSE_CLIENT.replace(/^ca-/, '') + ', DIRECT, f08c47fec0942fa0\n');
+/* addresses people guess, forwarded permanently to the real page */
+fs.writeFileSync(path.join(OUT, '_redirects'), '/remove-background /remove-bg/ 301\n/background-remover /remove-bg/ 301\n');
 /* Cloudflare Pages / Netlify headers: long cache for hashed assets, sensible security defaults */
 fs.writeFileSync(path.join(OUT, '_headers'), '/assets/*\n  Cache-Control: public, max-age=31536000, immutable\n\n/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: geolocation=(), interest-cohort=()\n  Strict-Transport-Security: max-age=31536000; includeSubDomains\n');
 
